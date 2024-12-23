@@ -1,7 +1,4 @@
-# 3.student.mark.oop.math.py
 import math
-import numpy as np
-import curses
 
 class Person:
     def __init__(self, person_id, name, dob):
@@ -107,47 +104,36 @@ class StudentMarkManagement:
     def sort_students_by_gpa(self):
         self._students.sort(key=lambda s: s.get_gpa(), reverse=True)
 
-    def display_menu(self, screen):
+    def display_menu(self):
         while True:
-            screen.clear()
-            screen.addstr("Student Mark Management System\n")
-            screen.addstr("1. List students\n")
-            screen.addstr("2. List courses\n")
-            screen.addstr("3. Input marks for a course\n")
-            screen.addstr("4. Calculate GPA\n")
-            screen.addstr("5. Sort students by GPA\n")
-            screen.addstr("6. Exit\n")
-            screen.addstr("Choose an option: ")
-            choice = screen.getstr().decode()
+            print("\nStudent Mark Management System")
+            print("1. List students")
+            print("2. List courses")
+            print("3. Input marks for a course")
+            print("4. Calculate GPA")
+            print("5. Sort students by GPA")
+            print("6. Exit")
+            choice = input("Choose an option: ")
 
             if choice == "1":
-                screen.clear()
-                screen.addstr("Students:\n")
-                for student in self._students:
-                    screen.addstr(str(student) + "\n")
-                screen.addstr("Press any key to return to the menu.")
-                screen.getch()
+                self.list_students()
             elif choice == "2":
-                screen.clear()
-                screen.addstr("Courses:\n")
-                for course in self._courses:
-                    screen.addstr(str(course) + "\n")
-                screen.addstr("Press any key to return to the menu.")
-                screen.getch()
+                self.list_courses()
             elif choice == "3":
                 self.input_marks_for_course()
             elif choice == "4":
                 self.calculate_gpa()
             elif choice == "5":
                 self.sort_students_by_gpa()
+                print("Students sorted by GPA.")
             elif choice == "6":
+                print("Bye!!!")
                 break
             else:
-                screen.addstr("Invalid choice. Press any key to try again.")
-                screen.getch()
+                print("Invalid choice. Try again.")
 
 if __name__ == "__main__":
     smm = StudentMarkManagement()
     smm.input_students()
     smm.input_courses()
-    curses.wrapper(smm.display_menu)
+    smm.display_menu()
