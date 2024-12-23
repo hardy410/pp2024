@@ -1,6 +1,6 @@
 from input import input_students, input_courses, input_marks
-from management.student import Student
-from management.course import Course
+from student import Student
+from course import Course
 
 def main():
     students = [Student(*s) for s in input_students()]
